@@ -18,10 +18,7 @@ def parse_arguments():
     fixed time increments for a predefined period of time.
     """
 
-    parser = argparse.ArgumentParser(
-                                        prog        = 'Mouse Perturbation', 
-                                        description = description
-                                    )
+    parser = argparse.ArgumentParser(prog = 'Mouse Perturbation', description = description)
 
     parser.add_argument(
                             "-p", 
@@ -46,7 +43,7 @@ def parse_arguments():
 
 if __name__ == "__main__":
 
-    # get args
+    # set args
     args     = parse_arguments()
     period   = args.period if args.period else 5
     duration = args.duration if args.duration else 60
@@ -55,10 +52,5 @@ if __name__ == "__main__":
     m = mouse.Mouse()
 
     logging.info("START: automatically perturb mouse every {}s for {}s".format(period, duration))
-
-    m.perturb_autopilot(
-                            period   = period, 
-                            duration = duration
-                        )
-
+    m.perturb_autopilot(period = period, duration = duration)
     logging.info("FINISH: mouse autopilot OFF!")

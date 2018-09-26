@@ -30,22 +30,17 @@ class Mouse:
         pyautogui.moveTo(x, y)
 
 
-    def perturb_autopilot(self, start_dttm = datetime.now(), duration = timedelta(seconds = 60)):
+    def perturb_autopilot(self, period = 5, duration = 60):
         """
-        Perturb mouse every second for time duration starting at start_dttm
+        Perturb mouse every 'period' seconds for a total 'duration' seconds 
         """
-        end_dttm = start_dttm + duration
+        end_dttm = datetime.now() + timedelta(seconds = duration)
         
         while datetime.now() < end_dttm:
             self.perturb()
             # snooze to save CPU
-            print("zZz...") 
-            time.sleep(5)
+            logging.info("zZz...") 
+            time.sleep(period)
         
-        print("I woke up at {}!".format(datetime.now()))
 
 
-if __name__ == "__main__":
-    
-    m = Mouse()
-    m.perturb_autopilot()
